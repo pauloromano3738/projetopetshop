@@ -9,11 +9,14 @@ st.set_page_config(
 )
 
 st.sidebar.title('MENU')
-st.sidebar.button("PROFISSIONAIS")
-botaoCadastrarPet = st.sidebar.button("PETS")
+botaoProfissional = st.sidebar.button("PROFISSIONAIS")
+botaoPet = st.sidebar.button("PETS")
 st.sidebar.button("AGENDAMENTOS")
 
-if botaoCadastrarPet:
+if botaoProfissional:
+    st.switch_page("pages/cadastroProfissional.py")
+
+if botaoPet:
     st.switch_page("pages/cadastroPet.py")
 
 st.title("BEM-VINDO *NOME*")
