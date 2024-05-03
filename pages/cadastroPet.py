@@ -1,5 +1,6 @@
 import time
 import streamlit as st
+import pages.menu as menu
 import controllers.petController as petController
 import models.pet as pet
 import pandas as pd
@@ -11,6 +12,8 @@ st.set_page_config(
    initial_sidebar_state="collapsed",
    menu_items=None
 )
+
+menu.mostraMenu()
 
 st.title("Cadastro de Pets")
 

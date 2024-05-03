@@ -1,4 +1,5 @@
 import streamlit as st
+import pages.menu as menu
 
 st.set_page_config(
    page_title="Projeto Petshop",
@@ -8,16 +9,8 @@ st.set_page_config(
    menu_items=None
 )
 
-st.sidebar.title('MENU')
-botaoProfissional = st.sidebar.button("PROFISSIONAIS")
-botaoPet = st.sidebar.button("PETS")
-st.sidebar.button("AGENDAMENTOS")
-
-if botaoProfissional:
-    st.switch_page("pages/cadastroProfissional.py")
-
-if botaoPet:
-    st.switch_page("pages/cadastroPet.py")
+menu.mostraMenu()
 
 st.title("BEM-VINDO *NOME*")
 st.title("Agendamentos do dia:")
+st.multiselect('Multiselect', [1,2,3])
