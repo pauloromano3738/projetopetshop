@@ -2,16 +2,17 @@ import services.database as db;
 import models.cliente as cliente
 import models.endereco as endereco
 
-def Insere(cliente):
-    db.cursor.execute("INSERT INTO cliente VALUES (%s, %s, %s, %s, %s, %s)", (cliente.id, cliente.nome, cliente.cpf, cliente.idade, cliente.telefone, cliente.endereco_id))
-    db.conexao.commit()
+def Insere(cliente, endereco):
+    db.cursor.execute("INSERT INTO endereço VALUES (%s, %s, %s, %s, %s)", (endereco.id, endereco.rua, endereco.numero, endereco.bairro, endereco.complemento))
+    endereco.id = db.cursor.lastrowid
 
+    db.cursor.execute("INSERT INTO cliente VALUES (%s, %s, %s, %s, %s, %s)", (cliente.id, cliente.nome, cliente.cpf, cliente.idade, cliente.telefone, endereco.id))
+    db.conexao.commit()
 
 def MostraClientes():
     db.conexao.cmd_reset_connection()
     db.cursor.execute("SELECT * FROM cliente")
     
-
     clientes = []
 
     for row in db.cursor.fetchall():

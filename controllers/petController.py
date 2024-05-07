@@ -9,7 +9,6 @@ def MostraPets():
     db.conexao.cmd_reset_connection()
     db.cursor.execute("SELECT * FROM pet")
     
-
     pets = []
 
     for row in db.cursor.fetchall():

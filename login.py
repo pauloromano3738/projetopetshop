@@ -1,7 +1,8 @@
-import streamlit as st
-import controllers.loginController as loginController
-import models.profissional as profissional
+import streamlit as st #importa a biblioteca do streamlit como st
+import controllers.loginController as loginController #importa loginController da pasta controllers como loginController
+import models.profissional as profissional #importa profissional da pasta models como profissional
 
+#execute a função set_page_config da biblioteca streamlit, que serve para configurar algumas parâmetros da página.
 st.set_page_config(
    page_title="Projeto Petshop",
    page_icon="🐶",
