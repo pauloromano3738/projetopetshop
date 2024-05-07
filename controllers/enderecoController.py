@@ -4,11 +4,11 @@ import models.endereco as endereco
 def Insere(endereco):
     db.cursor.execute("INSERT INTO endereço VALUES (%s, %s, %s, %s, %s)", (endereco.id, endereco.rua, endereco.numero, endereco.bairro, endereco.complemento))
     db.conexao.commit()
+    endereco.id = db.cursor.lastrowid
 
 def MostraEnderecos():
     db.conexao.cmd_reset_connection()
     db.cursor.execute("SELECT * FROM endereço")
-    
     enderecos = []
 
     for row in db.cursor.fetchall():

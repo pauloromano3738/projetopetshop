@@ -45,10 +45,7 @@ if botao_cadastra:
     cliente.telefone = telefone
 
     enderecoController.Insere(endereco.Endereco(None, rua, numero, bairro, complemento))
-
-    
-
-    clienteController.Insere(cliente.Cliente(None, nome, cpf, idade, telefone))
+    clienteController.Insere(cliente.Cliente(None, nome, cpf, idade, telefone, endereco))
     sucesso = st.success("Cliente inserido com sucesso!")
     time.sleep(1)
     sucesso.empty()
