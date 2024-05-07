@@ -4,7 +4,6 @@ import streamlit as st
 import pages.menu as menu
 import controllers.clienteController as clienteController
 import models.cliente as cliente
-import controllers.enderecoController as enderecoController
 import models.endereco as endereco
 import controllers.petController as petController
 import models.pet as pet
