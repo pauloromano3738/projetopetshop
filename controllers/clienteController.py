@@ -3,7 +3,7 @@ import models.cliente as cliente
 import models.endereco as endereco
 
 def Insere(cliente, endereco):
-    db.cursor.execute("INSERT INTO endereço VALUES (%s, %s, %s, %s, %s)", (endereco.id, endereco.rua, endereco.numero, endereco.bairro, endereco.complemento))
+    db.cursor.execute("INSERT INTO endereco VALUES (%s, %s, %s, %s, %s)", (endereco.id, endereco.rua, endereco.numero, endereco.bairro, endereco.complemento))
     endereco.id = db.cursor.lastrowid
 
     db.cursor.execute("INSERT INTO cliente VALUES (%s, %s, %s, %s, %s, %s)", (cliente.id, cliente.nome, cliente.cpf, cliente.idade, cliente.telefone, endereco.id))

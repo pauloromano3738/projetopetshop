@@ -7,6 +7,8 @@ import models.cliente as cliente
 import models.endereco as endereco
 import controllers.petController as petController
 import models.pet as pet
+import controllers.agendamentoController as agendamentoController
+import models.agendamento as agendamento
 import pandas as pd
 
 st.set_page_config(
@@ -49,43 +51,68 @@ with containerCliente.container():
         sucesso.empty()
         containerCliente.empty()
 
-        containerPet = st.empty()
 
-        with containerPet.container(): 
-        
-            st.title("Cadastro de Pet")
 
-            with st.form(key="insere_pet"):
-                nome = st.text_input(label="Insira o nome do pet:")
-                idade = st.number_input(label="Insira a idade do pet:", format= "%d", step=1)
-                peso = st.number_input(label="Insira o peso do pet:", format= "%d", step=1)
-                raca = st.text_input(label="Insira a raça do pet:")
-                clienteId = st.number_input(label="Cliente_ID", format= "%d", step=1)
-                botao_cadastra_pet = st.form_submit_button("Cadastrar")
 
-            if botao_cadastra_pet:
-                petController.Insere(pet.Pet(None, nome, idade, peso, raca, clienteId))
-                sucesso = st.success("Pet inserido com sucesso!")
-                time.sleep(1)
-                sucesso.empty()
-                containerPet.empty()
 
-                containerAgendamento = st.empty()
 
-                with containerAgendamento.container():
+
+
+
+containerPet = st.empty()
+
+with containerPet.container(): 
+
+    st.title("Cadastro de Pet")
+    with st.form(key="insere_pet"):
+
+        col1, col2 = st.columns([5, 5])
+        with col1:
+            nome = st.text_input(label="Insira o nome do pet:")
+            peso = st.number_input(label="Insira o peso do pet:", format= "%d", step=1)
+
+        with col2:
+            idade = st.number_input(label="Insira a idade do pet:", format= "%d", step=1)
+            raca = st.text_input(label="Insira a raça do pet:")
+        clienteId = st.number_input(label="Cliente_ID", format= "%d", step=1)
+        botao_cadastra_pet = st.form_submit_button("Cadastrar")
+
+    if botao_cadastra_pet:
+
+        petController.Insere(pet.Pet(None, nome, idade, peso, raca, clienteId))
+        sucesso = st.success("Pet inserido com sucesso!")
+        time.sleep(1)
+        sucesso.empty()
+        containerPet.empty()
+
+
+
+
+
+
+
+
+
+containerAgendamento = st.empty()
+
+with containerAgendamento.container():
                 
-                    st.title("Agendamento")
+    st.title("Agendamento")
 
-                    with st.form(key="agendamento"):
-                        dataAgendamento = st.date_input("Escolha uma data:", format="DD/MM/YYYY")
-                        horaAgendamento = st.time_input("Escolha o horário:", value='now')
-                        petEscolhido = st.selectbox(label="Escolha um pet", options=["cachorro", "gato"])
-                        botao_agenda = st.form_submit_button("Agendar")
+    with st.form(key="agendamento"):
+        col1, col2 = st.columns([5, 5])
+        with col1:
+            dataAgendamento = st.date_input("Escolha uma data:", format="DD/MM/YYYY")
+        with col2:
+            horaAgendamento = st.time_input("Escolha o horário:", value='now')
+        profissional = st.selectbox(label="Profissional responsável:", options=['admin'])
+        botao_agenda = st.form_submit_button("Agendar")
 
-                    if botao_agenda:
-                        DataHoraCombinadas = data.datetime.combine(dataAgendamento, horaAgendamento)
-                        print(DataHoraCombinadas)
-                        containerAgendamento.empty()
+    if botao_agenda:
+        DataHoraCombinadas = data.datetime.combine(dataAgendamento, horaAgendamento)
+        agendamentoController.Insere(agendamento.Agendamento(None, "Em andamento", DataHoraCombinadas, profissional.id))
+        print(DataHoraCombinadas)
+        containerAgendamento.empty()
         
 
 
