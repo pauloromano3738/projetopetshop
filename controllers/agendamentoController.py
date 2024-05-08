@@ -1,21 +1,22 @@
 import services.database as db;
+import models.cliente as cliente
+import models.endereco as endereco
+import models.pet as pet
 import models.agendamento as agendamento
 import models.profissional as profissional
-import models.cliente as cliente
-import models.pet as pet
 
 
-def Insere(agendamento, profissional, cliente, pet):
-    #db.cursor.execute("SELECT * FROM profissional")
-    profissional.id = db.cursor.lastrowid
+def Insere(cliente, endereco, pet, agendamento):
+    db.cursor.execute("INSERT INTO endereco VALUES (%s, %s, %s, %s, %s)", (endereco.id, endereco.rua, endereco.numero, endereco.bairro, endereco.complemento))
+    endereco.id = db.cursor.lastrowid
 
-    #db.cursor.execute("SELECT * FROM cliente")
+    db.cursor.execute("INSERT INTO cliente VALUES (%s, %s, %s, %s, %s, %s)", (cliente.id, cliente.nome, cliente.cpf, cliente.idade, cliente.telefone, endereco.id))
     cliente.id = db.cursor.lastrowid
 
-    #db.cursor.execute("SELECT * FROM pet")
+    db.cursor.execute("INSERT INTO pet VALUES (%s, %s, %s, %s, %s, %s)", (pet.id, pet.nome, pet.idade, pet.peso, pet.raca, cliente.id))
     pet.id = db.cursor.lastrowid
 
-    db.cursor.execute("INSERT INTO agendamento VALUES (%s, %s, %s, %s, %s, %s)", (agendamento.id, agendamento.status, agendamento.data, profissional.id, cliente.id, pet.id))
+    db.cursor.execute("INSERT INTO agendamento VALUES (%s, %s, %s, %s, %s, %s)", (agendamento.id, agendamento.status, agendamento.data, agendamento.profissional_id, cliente.id, pet.id))
     db.conexao.commit()
 
 def MostraAgendamentos():

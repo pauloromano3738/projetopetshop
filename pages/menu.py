@@ -2,11 +2,14 @@ import streamlit as st
 
 def mostraMenu():
     st.sidebar.title('MENU')
+    
     botaoProfissional = st.sidebar.button("PROFISSIONAIS")
     botaoEndereco = st.sidebar.button("ENDEREÇOS")
     botaoCliente = st.sidebar.button("CLIENTES")
     botaoPet = st.sidebar.button("PETS")
     botaoAgendamento = st.sidebar.button("AGENDAMENTOS")
+    botaoAgendamento2 = st.sidebar.button("AGENDAMENTOS2")
+
 
     if botaoProfissional:
         st.switch_page("pages/cadastroProfissional.py")
@@ -22,3 +25,6 @@ def mostraMenu():
 
     if botaoAgendamento:
         st.switch_page("pages/agendamento.py")
+
+    if botaoAgendamento2:
+        st.switch_page("pages/agendamento2.py")

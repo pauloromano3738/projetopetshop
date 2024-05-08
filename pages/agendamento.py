@@ -21,98 +21,47 @@ st.set_page_config(
 
 menu.mostraMenu()
 
-containerCliente = st.empty()
-
-with containerCliente.container():
-
-    st.title("Cadastro de Cliente")
-
-    with st.form(key="insere_cliente"):
-
-        col1, col2 = st.columns([5, 5])
-        with col1:
-            nome = st.text_input(label="Insira o nome do cliente:")
-            idade = st.number_input(label="Insira a idade do cliente:", format= "%d", step=1)
-            rua = st.text_input(label="Rua:")
-            bairro = st.text_input(label="Bairro:")
-        with col2:
-            cpf = st.text_input(label="Insira o CPF do cliente:")
-            telefone = st.number_input(label="Insira o telefone do cliente:", format= "%d", step=1)
-            numero = st.number_input(label="Número:", format= "%d", step=1)
-            complemento = st.text_input(label="Complemento:")
-
-        botao_cadastra_cliente = st.form_submit_button("Cadastrar")
-
-    if botao_cadastra_cliente:
-        clienteCriado = cliente.Cliente(None, nome, cpf, idade, telefone, endereco)
-        clienteController.Insere(clienteCriado, endereco.Endereco(None, rua, numero, bairro, complemento))
-        sucesso = st.success("Cliente inserido com sucesso!")
-        time.sleep(1)
-        sucesso.empty()
-        containerCliente.empty()
+with st.form(key="insere_agendamento"):
+    st.title("Cadastro de cliente")
+    col1, col2 = st.columns([5, 5])
+    with col1:
+        nomeCliente = st.text_input(label="Insira o nome do cliente:")
+        idadeCliente = st.number_input(label="Insira a idade do cliente:", format= "%d", step=1)
+        rua = st.text_input(label="Rua:")
+        bairro = st.text_input(label="Bairro:")
+    with col2:
+        cpfCliente = st.text_input(label="Insira o CPF do cliente:")
+        telefoneCliente = st.number_input(label="Insira o telefone do cliente:", format= "%d", step=1)
+        numero = st.number_input(label="Número:", format= "%d", step=1)
+        complemento = st.text_input(label="Complemento:")
 
 
+    st.title("Cadastro de pet")
+    col3, col4 = st.columns([5, 5])
+    
+    with col3:
+        nomePet = st.text_input(label="Insira o nome do pet:")
+        pesoPet = st.number_input(label="Insira o peso do pet:", format= "%d", step=1)
+    with col4:
+        idadePet = st.number_input(label="Insira a idade do pet:", format= "%d", step=1)
+        racaPet = st.text_input(label="Insira a raça do pet:")
 
-
-
-
-
-
-
-containerPet = st.empty()
-
-with containerPet.container(): 
-
-    st.title("Cadastro de Pet")
-    with st.form(key="insere_pet"):
-
-        col1, col2 = st.columns([5, 5])
-        with col1:
-            nome = st.text_input(label="Insira o nome do pet:")
-            peso = st.number_input(label="Insira o peso do pet:", format= "%d", step=1)
-
-        with col2:
-            idade = st.number_input(label="Insira a idade do pet:", format= "%d", step=1)
-            raca = st.text_input(label="Insira a raça do pet:")
-        clienteId = st.number_input(label="Cliente_ID", format= "%d", step=1)
-        botao_cadastra_pet = st.form_submit_button("Cadastrar")
-
-    if botao_cadastra_pet:
-        #print(clienteId)
-        petController.Insere(pet.Pet(None, nome, idade, peso, raca, clienteId))
-        sucesso = st.success("Pet inserido com sucesso!")
-        time.sleep(1)
-        sucesso.empty()
-        containerPet.empty()
-
-
-
-
-
-
-
-
-
-containerAgendamento = st.empty()
-
-with containerAgendamento.container():
-                
     st.title("Agendamento")
 
-    with st.form(key="agendamento"):
-        col1, col2 = st.columns([5, 5])
-        with col1:
-            dataAgendamento = st.date_input("Escolha uma data:", format="DD/MM/YYYY")
-        with col2:
-            horaAgendamento = st.time_input("Escolha o horário:", value='now')
-        profissional = st.selectbox(label="Profissional responsável:", options=['admin'])
-        botao_agenda = st.form_submit_button("Agendar")
+    col1, col2 = st.columns([5, 5])
+    with col1:
+        dataAgendamento = st.date_input("Escolha uma data:", format="DD/MM/YYYY")
+        profissionalID = st.text_input("Dígite o id do profissional responsável:")
+    with col2:
+        horaAgendamento = st.time_input("Escolha o horário:", value='now')
 
-    if botao_agenda:
+    botao_agendar = st.form_submit_button("Agendar")
+
+    if botao_agendar:
+        enderecoCriado = endereco.Endereco(None, rua, numero, bairro, complemento)
+        clienteCriado = cliente.Cliente(None, nomeCliente, cpfCliente, idadeCliente, telefoneCliente, enderecoCriado)
+        petCriado = pet.Pet(None, nomePet, idadePet, pesoPet, racaPet, clienteCriado)
         DataHoraCombinadas = data.datetime.combine(dataAgendamento, horaAgendamento)
-        agendamentoController.Insere(agendamento.Agendamento(None, "Em andamento", DataHoraCombinadas, profissional.id))
-        print(DataHoraCombinadas)
-        containerAgendamento.empty()
+        agendamentoCriado = agendamento.Agendamento(None, "Em Andamento, Finalizado", DataHoraCombinadas, profissionalID, None, None)
         
-
-
+        agendamentoController.Insere(clienteCriado, enderecoCriado, petCriado, agendamentoCriado)
