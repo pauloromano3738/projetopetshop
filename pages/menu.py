@@ -7,7 +7,8 @@ def mostraMenu():
     botaoCliente = st.sidebar.button("CONSULTAR CLIENTES")
     botaoEndereco = st.sidebar.button("CONSULTAR ENDEREÇOS")
     botaoPet = st.sidebar.button("CONSULTAR PETS")
-    botaoAgendamento = st.sidebar.button("AGENDAMENTOS")
+    botaoConsultarAgendamento = st.sidebar.button("CONSULTAR AGENDAMENTOS")
+    botaoAgendamento = st.sidebar.button("REALIZAR AGENDAMENTO")
 
     if botaoProfissional:
         st.switch_page("pages/cadastroProfissional.py")
@@ -20,6 +21,9 @@ def mostraMenu():
         
     if botaoPet:
         st.switch_page("pages/consultaPet.py")
+
+    if botaoConsultarAgendamento:
+        st.switch_page("pages/consultaAgendamento.py")
 
     if botaoAgendamento:
         st.switch_page("pages/agendamento.py")

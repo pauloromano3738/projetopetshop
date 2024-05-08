@@ -1,4 +1,3 @@
-import time
 import streamlit as st
 import pages.menu as menu
 import controllers.clienteController as clienteController

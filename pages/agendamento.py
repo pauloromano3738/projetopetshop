@@ -1,4 +1,4 @@
-import datetime as data
+import datetime
 import time
 import streamlit as st
 import pages.menu as menu
@@ -50,10 +50,11 @@ with st.form(key="insere_agendamento"):
 
     col5, col6 = st.columns([5, 5])
     with col5:
-        dataAgendamento = st.date_input("Escolha uma data:", format="DD/MM/YYYY")
-        profissionalID = st.text_input("Dígite o id do profissional responsável:")
+        hoje = datetime.date.today()
+        dataAgendamento = st.date_input("Escolha uma data:", format="DD/MM/YYYY", min_value=hoje)
+        profissionalID = st.text_input("Dígite o id do profissional responsável:",)
     with col6:
-        horaAgendamento = st.time_input("Escolha o horário:", value='now')
+        horaAgendamento = st.time_input("Escolha o horário:", datetime.time(8))
 
     botao_agendar = st.form_submit_button("Agendar")
 
@@ -61,7 +62,7 @@ with st.form(key="insere_agendamento"):
         enderecoCriado = endereco.Endereco(None, rua, numero, bairro, complemento)
         clienteCriado = cliente.Cliente(None, nomeCliente, cpfCliente, idadeCliente, telefoneCliente, enderecoCriado)
         petCriado = pet.Pet(None, nomePet, idadePet, pesoPet, racaPet, clienteCriado)
-        DataHoraCombinadas = data.datetime.combine(dataAgendamento, horaAgendamento)
+        DataHoraCombinadas = datetime.datetime.combine(dataAgendamento, horaAgendamento)
         agendamentoCriado = agendamento.Agendamento(None, "Em Andamento", DataHoraCombinadas, profissionalID, None, None)
         agendamentoController.Insere(clienteCriado, enderecoCriado, petCriado, agendamentoCriado)
         sucesso = st.success("Agendamento realizado com sucesso!")
