@@ -44,8 +44,8 @@ with containerCliente.container():
         botao_cadastra_cliente = st.form_submit_button("Cadastrar")
 
     if botao_cadastra_cliente:
-        clienteController.Insere(cliente.Cliente(None, nome, cpf, idade, telefone, endereco), 
-                                 endereco.Endereco(None, rua, numero, bairro, complemento))
+        clienteCriado = cliente.Cliente(None, nome, cpf, idade, telefone, endereco)
+        clienteController.Insere(clienteCriado, endereco.Endereco(None, rua, numero, bairro, complemento))
         sucesso = st.success("Cliente inserido com sucesso!")
         time.sleep(1)
         sucesso.empty()
@@ -78,7 +78,7 @@ with containerPet.container():
         botao_cadastra_pet = st.form_submit_button("Cadastrar")
 
     if botao_cadastra_pet:
-
+        #print(clienteId)
         petController.Insere(pet.Pet(None, nome, idade, peso, raca, clienteId))
         sucesso = st.success("Pet inserido com sucesso!")
         time.sleep(1)
