@@ -3,7 +3,7 @@ import models.endereco as endereco
 
 def MostraEnderecos():
     db.conexao.cmd_reset_connection()
-    db.cursor.execute("SELECT * FROM endereço")
+    db.cursor.execute("SELECT * FROM endereco")
     enderecos = []
 
     for row in db.cursor.fetchall():

@@ -15,20 +15,7 @@ st.set_page_config(
 
 menu.mostraMenu()
 
-
-with st.form(key="insere_endereco"):
-    rua = st.text_input(label="Rua:")
-    numero = st.number_input(label="Número:", format= "%d", step=1)
-    bairro = st.text_input(label="Bairro:")
-    complemento = st.text_input(label="Complemento:")
-    botao_cadastra = st.form_submit_button("Cadastrar")
-
-if botao_cadastra:
-    enderecoController.Insere(endereco.Endereco(None, rua, numero, bairro, complemento))
-    sucesso = st.success("Cliente inserido com sucesso!")
-    time.sleep(1)
-    sucesso.empty()
-
+st.title("Endereços cadastrados")
 
 enderecos = []
 
@@ -40,4 +27,4 @@ df = pd.DataFrame(
     columns=['ID', 'Rua:', 'Número:', 'Bairro:', 'Complemento:']
 )
 
-st.dataframe(df, hide_index=True, use_container_width=True, height=800)
+st.dataframe(df, hide_index=True, use_container_width=True)

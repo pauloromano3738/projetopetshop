@@ -48,11 +48,11 @@ with st.form(key="insere_agendamento"):
 
     st.title("Agendamento")
 
-    col1, col2 = st.columns([5, 5])
-    with col1:
+    col5, col6 = st.columns([5, 5])
+    with col5:
         dataAgendamento = st.date_input("Escolha uma data:", format="DD/MM/YYYY")
         profissionalID = st.text_input("Dígite o id do profissional responsável:")
-    with col2:
+    with col6:
         horaAgendamento = st.time_input("Escolha o horário:", value='now')
 
     botao_agendar = st.form_submit_button("Agendar")
@@ -62,6 +62,8 @@ with st.form(key="insere_agendamento"):
         clienteCriado = cliente.Cliente(None, nomeCliente, cpfCliente, idadeCliente, telefoneCliente, enderecoCriado)
         petCriado = pet.Pet(None, nomePet, idadePet, pesoPet, racaPet, clienteCriado)
         DataHoraCombinadas = data.datetime.combine(dataAgendamento, horaAgendamento)
-        agendamentoCriado = agendamento.Agendamento(None, "Em Andamento, Finalizado", DataHoraCombinadas, profissionalID, None, None)
-        
+        agendamentoCriado = agendamento.Agendamento(None, "Em Andamento", DataHoraCombinadas, profissionalID, None, None)
         agendamentoController.Insere(clienteCriado, enderecoCriado, petCriado, agendamentoCriado)
+        sucesso = st.success("Agendamento realizado com sucesso!")
+        time.sleep(1)
+        sucesso.empty()

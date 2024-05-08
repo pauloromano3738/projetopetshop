@@ -24,5 +24,5 @@ df = pd.DataFrame(
     columns=['ID', 'Nome:', 'Idade:', 'Peso:', 'Raça:', 'Cliente_id:']
 )
 
-st.dataframe(df, hide_index=True, use_container_width=True, height=800)
+st.dataframe(df, hide_index=True, use_container_width=True)
 

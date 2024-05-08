@@ -11,6 +11,6 @@ st.set_page_config(
 
 menu.mostraMenu()
 
-st.title("BEM-VINDO *NOME*")
+st.title("BEM-VINDO")
 st.title("Agendamentos do dia:")
 st.multiselect('Multiselect', [1,2,3])

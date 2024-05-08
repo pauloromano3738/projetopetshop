@@ -15,6 +15,8 @@ st.set_page_config(
 
 menu.mostraMenu()
 
+st.title("Clientes cadastrados")
+
 clientes = []
 
 for cliente in clienteController.MostraClientes():

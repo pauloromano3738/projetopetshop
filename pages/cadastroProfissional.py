@@ -18,24 +18,23 @@ menu.mostraMenu()
 st.title("Cadastro de Profissionais")
 
 with st.form(key="insere_profissional"):
-    nome = st.text_input(label="Insira o nome do profissional:")
-    cpf = st.text_input(label="Insira o CPF do profissional:")
-    # COLOCAR SELECT BOX PARA O ENUM
-    ocupacao = st.text_input(label="Insira a ocupação do profissional:")
-    login = st.text_input(label="Insira o login para o profissional:")
-    senha = st.text_input(label="Insira a senha para o profissional:", type="password", max_chars=8)
+    col1, col2 = st.columns([5, 5])
+
+    with col1:
+        nome = st.text_input(label="Insira o nome do profissional:")
+        # COLOCAR SELECT BOX PARA O ENUM
+        ocupacao = st.text_input(label="Insira a ocupação do profissional:")
+        senha = st.text_input(label="Insira a senha para o profissional:", type="password", max_chars=8)
+
+    with col2:
+        cpf = st.text_input(label="Insira o CPF do profissional:")
+        login = st.text_input(label="Insira o login para o profissional:")
 
     botao_cadastra = st.form_submit_button("Cadastrar")
 
 botao_mostra = st.button("Mostrar")
 
 if botao_cadastra:
-    profissional.nome = nome
-    profissional.cpf = cpf
-    profissional.ocupacao = ocupacao
-    profissional.login = login
-    profissional.senha = senha
-
     profissionalController.Insere(profissional.Profissional(None, nome, cpf, ocupacao, login, senha))
     sucesso = st.success("Profissional inserido com sucesso!")
     time.sleep(1)
