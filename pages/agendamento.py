@@ -33,7 +33,7 @@ with st.form(key="insere_agendamento"):
         bairro = st.text_input(label="Bairro:")
     with col2:
         cpfCliente = st.text_input(label="Insira o CPF do cliente:")
-        telefoneCliente = st.number_input(label="Insira o telefone do cliente:", format= "%d", step=1)
+        telefoneCliente = st.text_input(label="Insira o telefone do cliente:", max_chars=9)
         numero = st.number_input(label="Número:", format= "%d", step=1)
         complemento = st.text_input(label="Complemento:")
 
