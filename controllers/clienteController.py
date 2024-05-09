@@ -9,9 +9,11 @@ def Insere(cliente, endereco):
     db.cursor.execute("INSERT INTO cliente VALUES (%s, %s, %s, %s, %s, %s)", (cliente.id, cliente.nome, cliente.cpf, cliente.idade, cliente.telefone, endereco.id))
     db.conexao.commit()
 
-def RetornaID():
-    db.cursor.execute("SELECT * FROM cliente")
-    return db.cursor.lastrowid
+def Excluir(id):
+    db.cursor.execute("SET FOREIGN_KEY_CHECKS = 0")
+    db.cursor.execute("DELETE FROM cliente WHERE id_cliente = %s", (id, ))
+    db.cursor.execute("SET FOREIGN_KEY_CHECKS = 1")
+    db.conexao.commit()
 
 def MostraClientes():
     db.conexao.cmd_reset_connection()

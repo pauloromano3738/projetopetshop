@@ -7,6 +7,8 @@ import models.cliente as cliente
 import models.endereco as endereco
 import controllers.petController as petController
 import models.pet as pet
+import controllers.profissionalController as profissionalController
+import models.profissional as profissional
 import controllers.agendamentoController as agendamentoController
 import models.agendamento as agendamento
 import pandas as pd
@@ -37,8 +39,8 @@ with st.form(key="insere_agendamento"):
 
 
     st.title("Cadastro de pet")
+
     col3, col4 = st.columns([5, 5])
-    
     with col3:
         nomePet = st.text_input(label="Insira o nome do pet:")
         pesoPet = st.number_input(label="Insira o peso do pet:", format= "%d", step=1)
@@ -52,7 +54,17 @@ with st.form(key="insere_agendamento"):
     with col5:
         hoje = datetime.date.today()
         dataAgendamento = st.date_input("Escolha uma data:", format="DD/MM/YYYY", min_value=hoje)
-        profissionalID = st.text_input("Dígite o id do profissional responsável:",)
+        profissionaisNome = []
+
+        # Itera sobre os clientes e adiciona suas informações (id e nome) à lista clientesNome
+        for profissional in profissionalController.MostraProfissionais():
+            profissionalInfo = (profissional.id, profissional.nome)  # Usando uma tupla para cada cliente (id, nome)
+            profissionaisNome.append(profissionalInfo)
+
+        # Cria o selectbox com os nomes dos clientes como rótulos
+        profissionalSelecionado_nome = st.selectbox("Escolha um profissional:", options=[profissional[1] for profissional in profissionaisNome], index=0)
+        profissionalSelecionado_id = [profissional[0] for profissional in profissionaisNome if profissional[1] == profissionalSelecionado_nome][0]
+
     with col6:
         horaAgendamento = st.time_input("Escolha o horário:", datetime.time(8))
 
@@ -63,7 +75,7 @@ with st.form(key="insere_agendamento"):
         clienteCriado = cliente.Cliente(None, nomeCliente, cpfCliente, idadeCliente, telefoneCliente, enderecoCriado)
         petCriado = pet.Pet(None, nomePet, idadePet, pesoPet, racaPet, clienteCriado)
         DataHoraCombinadas = datetime.datetime.combine(dataAgendamento, horaAgendamento)
-        agendamentoCriado = agendamento.Agendamento(None, "Em Andamento", DataHoraCombinadas, profissionalID, None, None)
+        agendamentoCriado = agendamento.Agendamento(None, "Em Andamento", DataHoraCombinadas, profissionalSelecionado_id, None, None)
         agendamentoController.Insere(clienteCriado, enderecoCriado, petCriado, agendamentoCriado)
         sucesso = st.success("Agendamento realizado com sucesso!")
         time.sleep(1)
