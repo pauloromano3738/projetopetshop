@@ -2,16 +2,13 @@ import datetime
 import time
 import streamlit as st
 import pages.menu as menu
-import controllers.clienteController as clienteController
 import models.cliente as cliente
 import models.endereco as endereco
-import controllers.petController as petController
 import models.pet as pet
 import controllers.profissionalController as profissionalController
 import models.profissional as profissional
 import controllers.agendamentoController as agendamentoController
 import models.agendamento as agendamento
-import pandas as pd
 
 st.set_page_config(
    page_title="Projeto Petshop",

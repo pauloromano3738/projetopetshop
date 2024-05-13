@@ -2,7 +2,6 @@ import streamlit as st
 import pages.menu as menu
 import controllers.clienteController as clienteController
 import models.cliente as cliente
-import models.endereco as endereco
 import pandas as pd
 
 st.set_page_config(

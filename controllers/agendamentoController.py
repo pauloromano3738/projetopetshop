@@ -1,9 +1,5 @@
 import services.database as db;
-import models.cliente as cliente
-import models.endereco as endereco
-import models.pet as pet
 import models.agendamento as agendamento
-import models.profissional as profissional
 
 
 def Insere(cliente, endereco, pet, agendamento):

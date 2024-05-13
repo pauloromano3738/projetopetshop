@@ -1,18 +1,11 @@
 import services.database as db;
 import models.cliente as cliente
-import models.endereco as endereco
 
 def Insere(cliente, endereco):
     db.cursor.execute("INSERT INTO endereco VALUES (%s, %s, %s, %s, %s)", (endereco.id, endereco.rua, endereco.numero, endereco.bairro, endereco.complemento))
     endereco.id = db.cursor.lastrowid
 
     db.cursor.execute("INSERT INTO cliente VALUES (%s, %s, %s, %s, %s, %s)", (cliente.id, cliente.nome, cliente.cpf, cliente.idade, cliente.telefone, endereco.id))
-    db.conexao.commit()
-
-def Excluir(id):
-    db.cursor.execute("SET FOREIGN_KEY_CHECKS = 0")
-    db.cursor.execute("DELETE FROM cliente WHERE id_cliente = %s", (id, ))
-    db.cursor.execute("SET FOREIGN_KEY_CHECKS = 1")
     db.conexao.commit()
 
 def MostraClientes():
