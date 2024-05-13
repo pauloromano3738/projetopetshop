@@ -49,8 +49,7 @@ with st.form(key="insere_agendamento"):
 
     col5, col6 = st.columns([5, 5])
     with col5:
-        hoje = datetime.date.today()
-        dataAgendamento = st.date_input("Escolha uma data:", format="DD/MM/YYYY", min_value=hoje)
+        dataAgendamento = st.date_input("Escolha uma data:", format="DD/MM/YYYY", min_value=datetime.date.today())
         profissionaisNome = []
 
         # Itera sobre os clientes e adiciona suas informações (id e nome) à lista clientesNome
@@ -63,7 +62,7 @@ with st.form(key="insere_agendamento"):
         profissionalSelecionado_id = [profissional[0] for profissional in profissionaisNome if profissional[1] == profissionalSelecionado_nome][0]
 
     with col6:
-        horaAgendamento = st.time_input("Escolha o horário:", datetime.time(8))
+        horaAgendamento = st.time_input("Escolha o horário:", value=datetime.time(8))
 
     botao_agendar = st.form_submit_button("Agendar")
 
