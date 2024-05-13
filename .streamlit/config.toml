@@ -2,3 +2,7 @@
 
 toolbarMode = "minimal"
 showSidebarNavigation = false
+
+[theme]
+
+base = "dark"
