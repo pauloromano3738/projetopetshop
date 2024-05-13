@@ -33,7 +33,7 @@ with st.form(key="insere_agendamento"):
         bairro = st.text_input(label="Bairro:")
     with col2:
         cpfCliente = st.text_input(label="Insira o CPF do cliente:")
-        telefoneCliente = st.text_input(label="Insira o telefone do cliente:", max_chars=9)
+        telefoneCliente = st.text_input(label="Insira o telefone do cliente:", max_chars=11)
         numero = st.number_input(label="Número:", format= "%d", step=1)
         complemento = st.text_input(label="Complemento:")
 
@@ -43,9 +43,9 @@ with st.form(key="insere_agendamento"):
     col3, col4 = st.columns([5, 5])
     with col3:
         nomePet = st.text_input(label="Insira o nome do pet:")
-        pesoPet = st.number_input(label="Insira o peso do pet:", format= "%d", step=1)
+        pesoPet = st.number_input(label="Insira o peso do pet:", format= "%f", placeholder="em kilos", value=None)
     with col4:
-        idadePet = st.number_input(label="Insira a idade do pet:", format= "%d", step=1)
+        idadePet = st.number_input(label="Insira a idade do pet:", format= "%d", step=1, placeholder="em anos", value=None)
         racaPet = st.text_input(label="Insira a raça do pet:")
 
     st.title("Agendamento")

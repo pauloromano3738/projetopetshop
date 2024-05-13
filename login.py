@@ -11,9 +11,6 @@ st.set_page_config(
    menu_items=None
 )
 
-with open("style.css") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
 #container
 st.title("Login") #executa a função title da biblioteca streamlit, que adiciona um texto formato em título na página.
 

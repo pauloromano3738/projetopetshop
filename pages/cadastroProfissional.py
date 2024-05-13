@@ -23,9 +23,8 @@ with st.form(key="insere_profissional"):
     with col1:
         nome = st.text_input(label="Insira o nome do profissional:")
         # COLOCAR SELECT BOX PARA O ENUM
-        ocupacao = st.text_input(label="Insira a ocupação do profissional:")
+        ocupacao = st.selectbox(label="Insira a ocupação do profissional:", options=["atendente", "tosador", "médico veterinário"])
         senha = st.text_input(label="Insira a senha para o profissional:", type="password", max_chars=8)
-
     with col2:
         cpf = st.text_input(label="Insira o CPF do profissional:")
         login = st.text_input(label="Insira o login para o profissional:")

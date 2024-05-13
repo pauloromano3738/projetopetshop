@@ -1,29 +1,31 @@
 import streamlit as st
 
 def mostraMenu():
-    st.sidebar.title('MENU')
-    
-    botaoProfissional = st.sidebar.button("CONSULTAR PROFISSIONAIS")
-    botaoCliente = st.sidebar.button("CONSULTAR CLIENTES")
-    botaoEndereco = st.sidebar.button("CONSULTAR ENDEREÇOS")
-    botaoPet = st.sidebar.button("CONSULTAR PETS")
-    botaoConsultarAgendamento = st.sidebar.button("CONSULTAR AGENDAMENTOS")
-    botaoAgendamento = st.sidebar.button("REALIZAR AGENDAMENTO")
+    st.sidebar.header("MENU", divider="red")
 
-    if botaoProfissional:
-        st.switch_page("pages/cadastroProfissional.py")
+    with st.container():
 
-    if botaoCliente:
-        st.switch_page("pages/consultaCliente.py")
+        botaoProfissional = st.sidebar.button("CONSULTAR PROFISSIONAIS", use_container_width=True)
+        botaoCliente = st.sidebar.button("CONSULTAR CLIENTES", use_container_width=True)
+        botaoEndereco = st.sidebar.button("CONSULTAR ENDEREÇOS", use_container_width=True)
+        botaoPet = st.sidebar.button("CONSULTAR PETS", use_container_width=True)
+        botaoConsultarAgendamento = st.sidebar.button("CONSULTAR AGENDAMENTOS", use_container_width=True)
+        botaoAgendamento = st.sidebar.button("REALIZAR AGENDAMENTO", use_container_width=True)
 
-    if botaoEndereco:
-        st.switch_page("pages/consultaEndereco.py")
-        
-    if botaoPet:
-        st.switch_page("pages/consultaPet.py")
+        if botaoProfissional:
+            st.switch_page("pages/cadastroProfissional.py")
 
-    if botaoConsultarAgendamento:
-        st.switch_page("pages/consultaAgendamento.py")
+        if botaoCliente:
+            st.switch_page("pages/consultaCliente.py")
 
-    if botaoAgendamento:
-        st.switch_page("pages/agendamento.py")
+        if botaoEndereco:
+            st.switch_page("pages/consultaEndereco.py")
+
+        if botaoPet:
+            st.switch_page("pages/consultaPet.py")
+
+        if botaoConsultarAgendamento:
+            st.switch_page("pages/consultaAgendamento.py")
+
+        if botaoAgendamento:
+            st.switch_page("pages/agendamento.py")
