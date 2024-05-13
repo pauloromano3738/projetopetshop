@@ -1,7 +1,6 @@
 import services.database as db;
 import models.agendamento as agendamento
 
-
 def Insere(cliente, endereco, pet, agendamento):
     db.cursor.execute("INSERT INTO endereco VALUES (%s, %s, %s, %s, %s)", (endereco.id, endereco.rua, endereco.numero, endereco.bairro, endereco.complemento))
     endereco.id = db.cursor.lastrowid

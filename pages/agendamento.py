@@ -25,13 +25,13 @@ with st.form(key="insere_agendamento"):
     col1, col2 = st.columns([5, 5])
     with col1:
         nomeCliente = st.text_input(label="Insira o nome do cliente:")
-        idadeCliente = st.number_input(label="Insira a idade do cliente:", format= "%d", step=1)
+        idadeCliente = st.number_input(label="Insira a idade do cliente:", format= "%d", step=1, value=None)
         rua = st.text_input(label="Rua:")
         bairro = st.text_input(label="Bairro:")
     with col2:
-        cpfCliente = st.text_input(label="Insira o CPF do cliente:")
+        cpfCliente = st.text_input(label="Insira o CPF do cliente:", max_chars=11)
         telefoneCliente = st.text_input(label="Insira o telefone do cliente:", max_chars=11)
-        numero = st.number_input(label="Número:", format= "%d", step=1)
+        numero = st.number_input(label="Número:", format= "%d", step=1, value=None)
         complemento = st.text_input(label="Complemento:")
 
 
