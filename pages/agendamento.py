@@ -21,8 +21,11 @@ st.set_page_config(
 menu.mostraMenu()
 
 with st.form(key="insere_agendamento"):
+
     st.title("Cadastro de cliente")
+
     col1, col2 = st.columns([5, 5])
+
     with col1:
         nomeCliente = st.text_input(label="Insira o nome do cliente:")
         idadeCliente = st.number_input(label="Insira a idade do cliente:", format= "%d", step=1, value=None)
@@ -34,10 +37,10 @@ with st.form(key="insere_agendamento"):
         numero = st.number_input(label="Número:", format= "%d", step=1, value=None)
         complemento = st.text_input(label="Complemento:")
 
-
     st.title("Cadastro de pet")
 
     col3, col4 = st.columns([5, 5])
+
     with col3:
         nomePet = st.text_input(label="Insira o nome do pet:")
         pesoPet = st.number_input(label="Insira o peso do pet:", format= "%f", placeholder="em kilos", value=None)
@@ -48,17 +51,16 @@ with st.form(key="insere_agendamento"):
     st.title("Agendamento")
 
     col5, col6 = st.columns([5, 5])
+
     with col5:
-        dataAgendamento = st.date_input("Escolha uma data:", format="DD/MM/YYYY", min_value=datetime.date.today())
+        dataAgendamento = st.date_input(label="Escolha uma data:", format="DD/MM/YYYY", min_value=datetime.date.today())
         profissionaisNome = []
 
-        # Itera sobre os clientes e adiciona suas informações (id e nome) à lista clientesNome
         for profissional in profissionalController.MostraProfissionais():
-            profissionalInfo = (profissional.id, profissional.nome)  # Usando uma tupla para cada cliente (id, nome)
+            profissionalInfo = (profissional.id, profissional.nome)
             profissionaisNome.append(profissionalInfo)
 
-        # Cria o selectbox com os nomes dos clientes como rótulos
-        profissionalSelecionado_nome = st.selectbox("Escolha um profissional:", options=[profissional[1] for profissional in profissionaisNome], index=0)
+        profissionalSelecionado_nome = st.selectbox(label="Escolha um profissional:", options=[profissional[1] for profissional in profissionaisNome], index=0)
         profissionalSelecionado_id = [profissional[0] for profissional in profissionaisNome if profissional[1] == profissionalSelecionado_nome][0]
 
     with col6:

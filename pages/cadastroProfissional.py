@@ -25,7 +25,7 @@ with st.form(key="insere_profissional"):
         ocupacao = st.selectbox(label="Insira a ocupação do profissional:", options=["atendente", "tosador", "médico veterinário"])
         senha = st.text_input(label="Insira a senha para o profissional:", type="password", max_chars=8)
     with col2:
-        cpf = st.text_input(label="Insira o CPF do profissional:")
+        cpf = st.text_input(label="Insira o CPF do profissional:", max_chars=11)
         login = st.text_input(label="Insira o login para o profissional:")
 
     botao_cadastra = st.form_submit_button("Cadastrar")
