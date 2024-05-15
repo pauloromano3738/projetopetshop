@@ -28,4 +28,4 @@ def mostraMenu():
             st.switch_page("pages/consultaAgendamento.py")
 
         if botaoAgendamento:
-            st.switch_page("pages/agendamento.py")
+            st.switch_page("pages/agendamentoPagina.py")
