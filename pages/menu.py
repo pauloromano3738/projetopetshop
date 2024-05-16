@@ -1,6 +1,8 @@
 import streamlit as st
 
 def mostraMenu():
+    st.sidebar.image(image='pages/logo.png', output_format="PNG")
+
     st.sidebar.header("MENU", divider="red")
 
     with st.container():
