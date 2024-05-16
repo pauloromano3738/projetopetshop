@@ -24,3 +24,9 @@ def MostraAgendamentos():
         agendamentos.append(agendamento.Agendamento(row[0], row[1], row[2], row[3], row[4], row[5]))
     
     return agendamentos
+
+def ExcluiAgendamento(agendamento_id):
+    db.cursor.execute("SET FOREIGN_KEY_CHECKS=0")
+    db.cursor.execute("DELETE FROM agendamento WHERE id_agendamento = %s", (agendamento_id,))
+    db.cursor.execute("SET FOREIGN_KEY_CHECKS=1")
+    db.conexao.commit()

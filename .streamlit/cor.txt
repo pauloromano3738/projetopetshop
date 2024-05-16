@@ -1,0 +1,19 @@
+# verde
+primaryColor="#d3d4d3"
+backgroundColor="#2b2c2b"
+secondaryBackgroundColor="#08190e"
+textColor="#eee1da"
+
+#marrom
+
+primaryColor="#bdc9c9"
+backgroundColor="#364242"
+secondaryBackgroundColor="#212927"
+textColor="#f6d3d2"
+
+#branco
+
+primaryColor="#050208"
+backgroundColor="#fbf7fd"
+secondaryBackgroundColor="#e9f5dc"
+textColor="#090f0f"
